@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Registration</title>
+    <link type="text/css" href="/static/css/login.css" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/js/functions.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<div>
-    <h1>
-        Hello World
-    </h1>
-    <p>
-        yay our CI/CD pipeline works!
-    </p>
-    <p>
-        it actually works, can you believe it?
-    </p>
-</div>
+<a href="/"><h2>Create New User</h2></a>
+<form id="registrationform" method="post" action="/register">
+    <input type="text" id="username" placeholder="USERNAME">
+    <input type="text" id="password" placeholder="PASSWORD">
+    <input type="submit" value="Register">
+</form>
+<div id="userlist"></div>
+<script type="text/javascript">
+    checkjQuery();
+    preventRegisterFormFromSending($("#registrationform"));
+</script>
 </body>
 </html>

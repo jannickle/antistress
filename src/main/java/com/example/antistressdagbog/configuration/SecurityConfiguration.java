@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/registration")
+                .antMatchers("/")
                 .permitAll()
                 .anyRequest()
                 .authenticated()
@@ -35,12 +35,36 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
+//    @Override
+//    protected void configure(HttpSecurity httpSecurity) throws Exception {
+//        httpSecurity
+//			.authorizeRequests()
+//                .antMatchers("/", "/registration", "api/register", "/api/register", "/register").permitAll()
+//                .anyRequest().authenticated()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login/login")
+//                .permitAll()
+//                .and()
+//                .logout()
+//                .permitAll();
+//    }
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests()
+//                .antMatchers("/", "/home").access("hasRole('USER')")
+//                .antMatchers("/admin/**").hasRole("ADMIN")
+//                .and()
+//                .formLogin();
+//    }
+
     @Bean
     public AuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider =
                 new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder());
-        provider.setUserDetailsService(this.userDetailsService);
+        provider.setUserDetailsService(userDetailsService);
         return provider;
     }
 
