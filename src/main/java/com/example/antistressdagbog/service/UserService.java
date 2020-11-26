@@ -1,13 +1,13 @@
 package com.example.antistressdagbog.service;
 
-import com.example.antistressdagbog.model.User;
+import com.example.antistressdagbog.model.UserCredentials;
 import com.example.antistressdagbog.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import javax.persistence.EntityNotFoundException;
 
 @Service
-public class UserService {
+public class UserService{
 
     private final UserRepository userRepository;
 
@@ -15,12 +15,12 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Optional<User> findByUsername(String username){
-        return userRepository.findById(username);
+    public UserCredentials findByUsername(String username) throws EntityNotFoundException {
+        return userRepository.findById(username).orElseThrow(() -> new EntityNotFoundException(username));
     }
 
-    public void saveUser(User user){
-        userRepository.save(user);
+    public void saveUser(UserCredentials userCredentials){
+        userRepository.save(userCredentials);
     }
 
 }
