@@ -9,9 +9,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Set;
 
-@RestController
+@Controller
 public class RegistrationController {
 
     @Autowired
@@ -21,7 +22,6 @@ public class RegistrationController {
     PasswordEncoder passwordEncoder;
 
     @GetMapping("/register")
-    @ResponseBody
     public String register(){
         return "register/index";
     }
