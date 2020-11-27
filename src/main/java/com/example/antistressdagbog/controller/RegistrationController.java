@@ -9,7 +9,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.Set;
 
 @Controller
@@ -21,12 +20,12 @@ public class RegistrationController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @GetMapping("/register")
+    @GetMapping("/admin/register")
     public String register(){
-        return "register/index";
+        return "admin/register";
     }
 
-    @PostMapping("api/register")
+    @PostMapping("admin/api/register")
     public ResponseEntity<UserCredentials> register(@RequestBody UserCredentialsDto userCredentialsDto){
         UserCredentials user =
         UserCredentials.builder()

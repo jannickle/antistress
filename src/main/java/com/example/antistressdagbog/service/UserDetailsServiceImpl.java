@@ -25,6 +25,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
         UserCredentials userCredentials = userRepository.findByUsername(username);
+        if(userCredentials == null){
+            throw new UsernameNotFoundException("Wrong username or password");
+        }
         return userDetailsMapper.toUserDetails(userCredentials);
     }
 
