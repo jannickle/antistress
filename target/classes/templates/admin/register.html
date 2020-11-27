@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register new user</title>
+    <script type="text/javascript" th:src="@{/js/functions.js}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<a href="/"><h2>Register new user</h2></a>
+<form id="registerForm" method="post" action="/admin/api/register">
+    <input type="text" id="username" placeholder="USERNAME">
+    <input type="text" id="password" placeholder="PASSWORD">
+    <input type="submit" value="Register">
+</form>
+<div id="userlist"></div>
+<script type="text/javascript">
+    checkjQuery();
+    preventRegisterFormFromSending($("#registerForm"));
+</script>
+</body>
+</html>
