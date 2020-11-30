@@ -26,4 +26,5 @@ public class DiaryController {
         return "user/diary";
     }
 
+
 }
