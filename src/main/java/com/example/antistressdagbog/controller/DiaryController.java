@@ -25,4 +25,5 @@ public class DiaryController {
     public String chart(Model model){
         return "user/diary";
     }
+
 }
