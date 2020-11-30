@@ -1,7 +1,11 @@
 package com.example.antistressdagbog.repository;
 
+import com.example.antistressdagbog.model.Account;
 import com.example.antistressdagbog.model.DiaryEntry;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 public interface DiaryEntryRepository extends CrudRepository<DiaryEntry, Long> {
+    List<DiaryEntry> findAllByAccountAndWeek(Account account, int week);
 }

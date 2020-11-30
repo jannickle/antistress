@@ -20,6 +20,7 @@ public class DiaryEntry {
     private Account account;
 
     private LocalDate date;
+    private Integer week;
     private Integer dayOfWeek;
     private Integer morning;
     private Integer afternoon;
@@ -63,6 +64,14 @@ public class DiaryEntry {
 
     public void setDayOfWeek(Integer dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
+    }
+
+    public Integer getWeek() {
+        return week;
+    }
+
+    public void setWeek(Integer week) {
+        this.week = week;
     }
 
     public Integer getMorning() {

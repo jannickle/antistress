@@ -1,5 +1,6 @@
 package com.example.antistressdagbog.dto;
 
+import com.example.antistressdagbog.model.Account;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DiaryEntryDto {
 
+    long id;
+
     String date;
+
+    int week;
 
     int dayOfWeek;
 
@@ -20,5 +25,7 @@ public class DiaryEntryDto {
     int afternoon;
 
     int evening;
+
+    long account;
 
 }

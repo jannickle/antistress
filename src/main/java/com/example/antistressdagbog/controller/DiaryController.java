@@ -26,5 +26,10 @@ public class DiaryController {
         return "user/diary";
     }
 
+    @GetMapping("/user/diary2")
+    public String chart2(Model model){
+        return "user/diary2";
+    }
+
 
 }
