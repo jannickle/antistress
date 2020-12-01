@@ -24,7 +24,9 @@ public class UserCredentials {
     @Column(name = "authority")
     private Set<String> roles;
 
-    @OneToOne(targetEntity = Account.class, cascade = CascadeType.ALL)
+//    @OneToOne(targetEntity = Account.class, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
     public UserCredentials() {

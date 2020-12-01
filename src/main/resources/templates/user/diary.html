@@ -2,22 +2,29 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>diary</title>
+    <meta name="viewport" content="width=device=width, initial-scale=1">
+    <title>Your Diary</title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script type="text/javascript" th:src= "@{/js/jqplot/jquery.jqplot.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jqplot/jqplot.canvasAxisTickRenderer.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jqplot/jqplot.canvasTextRenderer.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jqplot/jqplot.canvasOverlay.js}"></script>
-    <script type="text/javascript" th:src="@{/js/jqplot/jqplot.categoryAxisRenderer.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+    <script th:src="@{/js/chartjs/chartjs-plugin-dragdata.js}"></script>
     <script type="text/javascript" th:src="@{/js/chartFunctions.js}"></script>
-    <link rel="stylesheet" type="text/css" href="/css/jquery.jqplot.css" >
-
+    <link rel="stylesheet" type="text/css" href="/css/Chart.css" >
 </head>
 <body>
-<div class="jqplot-target" id="test_chart"></div>
+<div id="status"></div>
+<div style="height: 90%; width: 90%">
+    <form id="diaryForm" action="/user/api/saveDiary" method="post">
+            <canvas id="chartJSContainer"></canvas>
+            <button type="submit">Gem Dagbog</button>
+    </form>
+    <form method="post" action="/user/diary">
+        <button type="submit">Fortryd Ændringer</button>
+    </form>
+</div>
 <script type="text/javascript">
     checkjQuery();
-    getAccount();
+    showDiary();
+    preventSaveFormFromSending($("#diaryForm"))
 </script>
 </body>
 </html>

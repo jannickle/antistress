@@ -1,10 +1,15 @@
 package com.example.antistressdagbog.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "diary_entry")
 public class DiaryEntry {
@@ -14,9 +19,8 @@ public class DiaryEntry {
     @Column(name = "id_diaryentry")
     private Long id;
 
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "account", nullable = false)
     private Account account;
 
     private LocalDate date;
@@ -30,9 +34,6 @@ public class DiaryEntry {
     private String note2;
     private String note3;
     private String noteSleep;
-
-    public DiaryEntry() {
-    }
 
     public Long getId() {
         return id;
