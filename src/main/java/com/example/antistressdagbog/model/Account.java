@@ -16,9 +16,8 @@ public class Account {
     @Column(name = "therapist")
     private String therapist;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "account")
-    public List<DiaryEntry> diaryentries;
+    public List<DiaryEntry> diaryEntries;
 
     public Account() {
     }
@@ -39,12 +38,12 @@ public class Account {
         this.therapist = therapist;
     }
 
-    public List<DiaryEntry> getDiaryentries() {
-        return diaryentries;
+    public List<DiaryEntry> getDiaryEntries() {
+        return diaryEntries;
     }
 
-    public void setDiaryentries(List<DiaryEntry> diaryEntries) {
-        this.diaryentries = diaryEntries;
+    public void setDiaryEntries(List<DiaryEntry> diaryEntries) {
+        this.diaryEntries = diaryEntries;
     }
 
 }

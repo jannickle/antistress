@@ -1,12 +1,9 @@
 package com.example.antistressdagbog.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "diary_entry")
@@ -17,11 +14,13 @@ public class DiaryEntry {
     @Column(name = "id_diaryentry")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account")
     private Account account;
 
-    private Date date;
+    private LocalDate date;
+    private Integer week;
     private Integer dayOfWeek;
     private Integer morning;
     private Integer afternoon;
@@ -51,11 +50,11 @@ public class DiaryEntry {
         this.account = account;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -65,6 +64,14 @@ public class DiaryEntry {
 
     public void setDayOfWeek(Integer dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
+    }
+
+    public Integer getWeek() {
+        return week;
+    }
+
+    public void setWeek(Integer week) {
+        this.week = week;
     }
 
     public Integer getMorning() {

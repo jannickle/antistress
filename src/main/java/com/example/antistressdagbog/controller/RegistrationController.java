@@ -27,13 +27,11 @@ public class RegistrationController {
 
     @PostMapping("admin/api/register")
     public ResponseEntity<UserCredentials> register(@RequestBody UserCredentialsDto userCredentialsDto){
-        UserCredentials user =
-        UserCredentials.builder()
-                .enabled(true)
-                .username(userCredentialsDto.getUsername())
-                .password(passwordEncoder.encode(userCredentialsDto.getPassword()))
-                .roles(Set.of("USER"))
-                .build();
+        UserCredentials user = new UserCredentials();
+        user.setUsername(userCredentialsDto.getUsername());
+        user.setPassword(passwordEncoder.encode(userCredentialsDto.getPassword()));
+        user.setEnabled(true);
+        user.setRoles(Set.of("USER"));
         userRepository.save(user);
         return ResponseEntity.ok(user);
     }
