@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device=width, initial-scale=1">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    <meta name="viewport" content="device=width, initial-scale=1">-->
     <title>Your Diary</title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
     <script th:src="@{/js/chartjs/chartjs-plugin-dragdata.js}"></script>
-    <script type="text/javascript" th:src="@{/js/chartFunctions2.js}"></script>
+    <script type="text/javascript" th:src="@{/js/chartFunctions.js}"></script>
     <link rel="stylesheet" type="text/css" href="/css/Chart.css" >
 </head>
 <body>
-<!--<div style="height: 75%; width: 75%">-->
-<!--    <canvas id="diaryChart"></canvas>-->
-<!--</div>-->
 <div id="status"></div>
 <div style="height: 90%; width: 90%">
+    <canvas id="chartJSContainer"></canvas>
+</div>
+<div>
     <form id="diaryForm" action="/user/api/saveDiary" method="post">
-            <canvas id="chartJSContainer"></canvas>
-            <button type="submit">Gem Dagbog</button>
+        <button type="submit">Gem Dagbog</button>
     </form>
     <form method="post" action="/user/diary">
         <button type="submit">Fortryd Ændringer</button>
@@ -26,7 +25,6 @@
 </div>
 <script type="text/javascript">
     checkjQuery();
-    showDiary();
     preventSaveFormFromSending($("#diaryForm"))
 </script>
 </body>

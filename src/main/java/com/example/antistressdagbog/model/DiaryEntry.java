@@ -25,7 +25,6 @@ public class DiaryEntry {
 
     private LocalDate date;
     private Integer week;
-    private Integer dayOfWeek;
     private Integer morning;
     private Integer afternoon;
     private Integer evening;
@@ -35,107 +34,4 @@ public class DiaryEntry {
     private String note3;
     private String noteSleep;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public Integer getDayOfWeek() {
-        return dayOfWeek;
-    }
-
-    public void setDayOfWeek(Integer dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
-
-    public Integer getWeek() {
-        return week;
-    }
-
-    public void setWeek(Integer week) {
-        this.week = week;
-    }
-
-    public Integer getMorning() {
-        return morning;
-    }
-
-    public void setMorning(Integer morning) {
-        this.morning = morning;
-    }
-
-    public Integer getAfternoon() {
-        return afternoon;
-    }
-
-    public void setAfternoon(Integer afternoon) {
-        this.afternoon = afternoon;
-    }
-
-    public Integer getEvening() {
-        return evening;
-    }
-
-    public void setEvening(Integer evening) {
-        this.evening = evening;
-    }
-
-    public Integer getSleep() {
-        return sleep;
-    }
-
-    public void setSleep(Integer sleep) {
-        this.sleep = sleep;
-    }
-
-    public String getNote1() {
-        return note1;
-    }
-
-    public void setNote1(String note1) {
-        this.note1 = note1;
-    }
-
-    public String getNote2() {
-        return note2;
-    }
-
-    public void setNote2(String note2) {
-        this.note2 = note2;
-    }
-
-    public String getNote3() {
-        return note3;
-    }
-
-    public void setNote3(String note3) {
-        this.note3 = note3;
-    }
-
-    public String getNoteSleep() {
-        return noteSleep;
-    }
-
-    public void setNoteSleep(String noteSleep) {
-        this.noteSleep = noteSleep;
-    }
 }
