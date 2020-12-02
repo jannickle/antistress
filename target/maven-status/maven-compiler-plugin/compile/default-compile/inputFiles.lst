@@ -1,11 +1,14 @@
 C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\repository\UserRepository.java
 C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\AntistressdagbogApplication.java
 C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\utility\UserDetailsMapper.java
+C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\controller\PDFController.java
 C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\dto\UserCredentialsDto.java
+C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\utility\DiaryPopulator.java
 C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\model\DiaryEntry.java
 C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\controller\WelcomeController.java
 C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\controller\RegistrationController.java
 C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\controller\DiaryRestController.java
+C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\utility\DtoMapper.java
 C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\controller\DiaryController.java
 C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\configuration\SecurityConfiguration.java
 C:\Users\Peter\OneDrive - Københavns Erhvervsakademi\Documents\Workspace\3. Semester\antistressdagbog\src\main\java\com\example\antistressdagbog\repository\AccountRepository.java
