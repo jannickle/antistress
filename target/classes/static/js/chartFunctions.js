@@ -137,7 +137,7 @@ function createGraph() {
                         valueY = Math.round(scaleRef.getValueForPixel(element.offsetY));
                     }
                 }
-                if(ratingsArr[valueX] == null && labelsArr[valueX] !== ""){
+                if(valueY <= 10 && ratingsArr[valueX] == null && labelsArr[valueX] !== ""){
                     ratingsArr[valueX] = valueY;
                     this.update();
                 }
