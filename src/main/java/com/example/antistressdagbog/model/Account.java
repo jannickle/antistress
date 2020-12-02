@@ -1,10 +1,15 @@
 package com.example.antistressdagbog.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "account")
 public class Account {
@@ -15,35 +20,5 @@ public class Account {
 
     @Column(name = "therapist")
     private String therapist;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "account")
-    public List<DiaryEntry> diaryEntries;
-
-    public Account() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTherapist() {
-        return therapist;
-    }
-
-    public void setTherapist(String therapist) {
-        this.therapist = therapist;
-    }
-
-    public List<DiaryEntry> getDiaryEntries() {
-        return diaryEntries;
-    }
-
-    public void setDiaryEntries(List<DiaryEntry> diaryEntries) {
-        this.diaryEntries = diaryEntries;
-    }
 
 }

@@ -1,0 +1,53 @@
+package com.example.antistressdagbog.utility;
+
+import com.example.antistressdagbog.dto.DiaryEntryDto;
+import com.example.antistressdagbog.model.Account;
+import com.example.antistressdagbog.model.DiaryEntry;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoField;
+
+@Component
+public class DtoMapper {
+
+    public DiaryEntryDto toDiaryEntryDto(DiaryEntry entry){
+        return DiaryEntryDto.builder()
+                .id(entry.getId())
+                .date(entry.getDate().toString())
+                .week(entry.getWeek())
+                .dayOfWeek(entry.getDayOfWeek())
+                .morning(entry.getMorning())
+                .afternoon(entry.getAfternoon())
+                .evening(entry.getEvening())
+                .account(entry.getAccount().getId())
+                .build();
+    }
+
+    public DiaryEntryDto toDiaryEntryDtoWithDateAndWeek(LocalDate date, Account account){
+        return DiaryEntryDto.builder()
+                .id(null)
+                .date(date.toString())
+                .week(date.get(ChronoField.ALIGNED_WEEK_OF_YEAR))
+                .dayOfWeek(null)
+                .morning(null)
+                .afternoon(null)
+                .evening(null)
+                .account(account.getId())
+                .build();
+    }
+
+    public DiaryEntry toDiaryEntry(DiaryEntryDto dto, Account account){
+        return DiaryEntry.builder()
+                .id(dto.getId())
+                .account(account)
+                .date(LocalDate.parse(dto.getDate()))
+                .week(dto.getWeek())
+                .dayOfWeek(dto.getDayOfWeek())
+                .morning(dto.getMorning())
+                .afternoon(dto.getAfternoon())
+                .evening(dto.getEvening())
+                .build();
+    }
+
+}

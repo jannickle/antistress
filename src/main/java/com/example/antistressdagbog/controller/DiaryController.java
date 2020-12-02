@@ -26,9 +26,14 @@ public class DiaryController {
         return "user/diary";
     }
 
-    @GetMapping("/user/diary2")
+    @GetMapping("/user/diary_old")
     public String chart2(Model model){
-        return "user/diary2";
+        return "user/diary_old";
+    }
+
+    @PostMapping("/user/diary")
+    public String undoChanges(){
+        return "redirect:/user/diary";
     }
 
 
