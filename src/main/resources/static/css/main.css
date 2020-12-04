@@ -57,10 +57,9 @@ header a {
     display: flex;
 }
 
-/* Create two equal columns that sits next to each other */
 .column1 {
     flex: 4%;
-    height: 75vh; /* Should be removed. Only for demonstration */
+    height: 75vh;
 }
 
 .column1 .box1 {
@@ -77,6 +76,6 @@ header a {
 
 .column2 {
     flex: 96%;
-    height: 75vh; /* Should be removed. Only for demonstration */
+    height: 75vh;
 }
 
