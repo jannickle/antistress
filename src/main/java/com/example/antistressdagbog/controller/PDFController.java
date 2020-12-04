@@ -11,14 +11,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 @Controller
-
 public class PDFController {
+
     @GetMapping("/guide/view")
     public String view(){
         return "guide/view";
     }
+
     @RequestMapping("/howto")
-    void getFile(HttpServletResponse response) throws IOException {
+    public void getFile(HttpServletResponse response) throws IOException {
 
         String fileName = "sdan-udfylder-du-antistress-dagbogenthauer-stresscenter.pdf";
         String path = "src/main/resources/static/files/" + fileName;
@@ -33,4 +34,5 @@ public class PDFController {
         FileCopyUtils.copy(inputStream, response.getOutputStream());
 
     }
+
 }
