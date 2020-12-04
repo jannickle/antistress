@@ -21,6 +21,11 @@ import java.util.Set;
 @Controller
 public class DiaryController {
 
+    @GetMapping("/")
+    public String index(){
+        return "user/diary";
+    }
+
     @GetMapping("/user/diary")
     public String chart(Model model){
         return "user/diary";
