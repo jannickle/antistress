@@ -9,19 +9,37 @@
     <script th:src="@{/js/chartjs/chartjs-plugin-dragdata.js}"></script>
     <script type="text/javascript" th:src="@{/js/chartFunctions.js}"></script>
     <link rel="stylesheet" type="text/css" href="/css/Chart.css" >
+    <link rel="stylesheet" type="text/css" href="/css/main.css" >
 </head>
 <body>
-<div id="status"></div>
-<div style="height: 90%; width: 90%">
-    <canvas id="chartJSContainer"></canvas>
-</div>
-<div>
-    <form id="diaryForm" action="/user/api/saveDiary" method="post">
-        <button type="submit">Gem Dagbog</button>
-    </form>
-    <form method="post" action="/user/diary">
-        <button type="submit">Fortryd Ændringer</button>
-    </form>
+<header>
+    <div>
+        <ul>
+            <li>
+                <a href="/perform_logout">Log ud <i class="fa fa-sign-out"></i></a>
+            </li>
+            <li>
+                <a href="/guide/view">Guide <i class="fa fa-sign-out"></i></a>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="left-sidebar"></div>
+<main>
+    <div id="status"></div>
+    <div>
+        <canvas id="chartJSContainer"></canvas>
+    <div>
+        <form id="diaryForm" action="/user/api/saveDiary" method="post">
+            <button type="submit">Gem Dagbog</button>
+        </form>
+        <form method="post" action="/user/diary">
+            <button type="submit">Fortryd Ændringer</button>
+        </form>
+    </div>
+</main>
+<div class="right-sidebar">
+
 </div>
 <script type="text/javascript">
     checkjQuery();

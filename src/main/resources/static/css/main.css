@@ -1,0 +1,54 @@
+body {
+    display: grid;
+    height: 100vh;
+    grid-template: auto 1fr auto / auto 1fr auto
+}
+
+header {
+   background: white;
+   padding: 0rem;
+   grid-column: 1 / 4;
+}
+
+.left-sidebar {
+    background: white;
+    grid-column: 1 / 2;
+}
+
+main {
+    background: white;
+    grid-column: 2 / 3;
+}
+
+.right-sidebar {
+    background: white;
+    grid-column: 3 / 4;
+}
+
+footer {
+    background: white;
+    padding: 0rem;
+    text-align: center;
+    grid-column: 1 / 4;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+}
+
+.left-sidebar,
+.right-sidebar {
+    padding: 2rem;
+}
+
+header ul {
+    list-style-type: none;
+    padding-left: 3rem;
+    padding-right: 3rem;
+
+}
+
+header a {
+    float: right;
+    padding: 1rem;
+}
