@@ -38,7 +38,7 @@ body {
 
 .left-sidebar,
 .right-sidebar {
-    padding: 2rem;
+    padding: 5vw;
 }
 
 header ul {
@@ -52,3 +52,31 @@ header a {
     float: right;
     padding: 1rem;
 }
+
+.row {
+    display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column1 {
+    flex: 4%;
+    height: 75vh; /* Should be removed. Only for demonstration */
+}
+
+.column1 .box1 {
+    height: 22%;
+}
+
+.column1 .box2 {
+    height: 8%;
+}
+
+.column1 .box3 {
+    height: 4%;
+}
+
+.column2 {
+    flex: 96%;
+    height: 75vh; /* Should be removed. Only for demonstration */
+}
+

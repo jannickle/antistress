@@ -35,6 +35,7 @@ function createGraph() {
         },
         options: {
             spanGaps: true,
+            maintainAspectRatio: false,
             scales: {
                 xAxes: [
                     {
