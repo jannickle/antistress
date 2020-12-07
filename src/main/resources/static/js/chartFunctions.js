@@ -208,6 +208,7 @@ function getDiaries(){
         type:"GET",
         success:function (data){
             result = data;
+            console.log(data)
         },
         error:function (data){
             console.log("ERROR i svar fra server");
@@ -226,6 +227,7 @@ function parseChartData(){
         j++;
         diaryToSave[i].evening = ratingsArr[j];
         j+=2;
+        diaryToSave[i].sleep = parseInt($("#sleep_day_" + i).val());
     }
     console.log(diaryToSave);
     return diaryToSave;
@@ -246,6 +248,18 @@ function preventSaveFormFromSending(diaryForm){
     });
 }
 
+function addSleepInputs(){
+    for(let i = 0; i < diary_entries.length; i++){
+        $(function () {
+            $("<input type='number' min='1' max='10'/>")
+                .attr("value", diary_entries[i].sleep)
+                .attr("id", "sleep_day_" + i)
+                .appendTo("#sleepInput" + i);
+        });
+    }
+}
+
 window.addEventListener('DOMContentLoaded', function () {
+    addSleepInputs()
     createGraph();
 }, false);

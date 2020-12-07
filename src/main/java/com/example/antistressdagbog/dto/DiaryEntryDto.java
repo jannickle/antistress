@@ -25,6 +25,8 @@ public class DiaryEntryDto {
 
     Integer evening;
 
+    Integer sleep;
+
     Long account;
 
 }
