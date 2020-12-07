@@ -39,14 +39,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-//                .logoutUrl("/perform_logout")
+                .logoutUrl("/perform_logout")
                 .deleteCookies("JSESSIONID")
                 .permitAll()
                 .and()
                 .headers()
                 .frameOptions()
                 .sameOrigin();
-
     }
 
     @Override

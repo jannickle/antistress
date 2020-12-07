@@ -18,4 +18,10 @@ public class LoginController {
 //        return "redirect:/";
 //    }
 
+    @GetMapping("/perform_logout")
+    public String performLogout(HttpServletRequest servlet) throws ServletException {
+        servlet.logout();
+        return "redirect:/login";
+    }
+
 }

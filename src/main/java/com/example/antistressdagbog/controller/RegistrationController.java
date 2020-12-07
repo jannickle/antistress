@@ -25,7 +25,7 @@ public class RegistrationController {
         return "admin/register";
     }
 
-    @PostMapping("admin/api/register")
+    @PostMapping("/admin/api/register")
     public ResponseEntity<UserCredentials> register(@RequestBody UserCredentialsDto userCredentialsDto){
         UserCredentials user = new UserCredentials();
         user.setUsername(userCredentialsDto.getUsername());

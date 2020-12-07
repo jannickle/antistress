@@ -35,6 +35,7 @@ function createGraph() {
         },
         options: {
             spanGaps: true,
+            maintainAspectRatio: false,
             scales: {
                 xAxes: [
                     {
@@ -78,8 +79,10 @@ function createGraph() {
                 yAxes: [
                     {
                         id: 'yAxis1',
+
                         ticks: {
                             // reverse: false,
+                            display: false,
                             min: 0,
                             max: 10,
                             beginAtZero: true,
@@ -146,8 +149,12 @@ function createGraph() {
     };
 
     var ctx = document.getElementById("chartJSContainer").getContext('2d')
+    ctx.fillText("Dato", 0, 0);
     chart = new Chart(ctx, config);
 }
+
+
+
 
 function postChartData(){
     console.log("createUser er kaldet med " + ratingsArr);
@@ -160,7 +167,7 @@ function postChartData(){
         success:function (data){
             console.log("SUCCESS svar fra server");
             console.log(savedDiary);
-            $("#status").html("Server: Dagbog er gemt!");
+            $("#status").html("Dagbog er gemt!");
         },
         error:function (data){
             console.log("ERROR i svar fra server")

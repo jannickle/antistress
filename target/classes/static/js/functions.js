@@ -15,13 +15,12 @@ function registerUser(username, password){
     registerObject["username"] = username;
     registerObject["password"] = password;
     $.ajax({
-        url:"admin/api/register",
+        url:"/api/register",
         type:"POST",
         contentType:"application/JSON",
         data: JSON.stringify(registerObject),
         success:function (data){
             console.log("SUCCESS svar fra server")
-            $("#userlist").prepend("<div>" + data.username + "</div>")
         },
         error:function (data){
             console.log("ERROR i svar fra server")

@@ -21,14 +21,14 @@ import java.util.Set;
 @Controller
 public class DiaryController {
 
-    @GetMapping("/user/diary")
-    public String chart(Model model){
+    @GetMapping("/")
+    public String index(){
         return "user/diary";
     }
 
-    @GetMapping("/user/diary_old")
-    public String chart2(Model model){
-        return "user/diary_old";
+    @GetMapping("/user/diary")
+    public String chart(Model model){
+        return "user/diary";
     }
 
     @PostMapping("/user/diary")
