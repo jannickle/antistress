@@ -4,8 +4,10 @@ let chart;
 var diary_entries = getDiaries();
 var labelsArr = getLabels(diary_entries);
 var ratingsArr = getRatings(diary_entries);
+var notesArr = getNotes(diary_entries);
 
 function createGraph() {
+
     var config = {
         type: 'line',
         data: {
@@ -34,7 +36,20 @@ function createGraph() {
                 }]
         },
         options: {
+            title: {
+                display: true,
+                text: "Din ANTISTRESS Dagbog",
+                fontSize: 18,
+                fontFamily: "'Helvetica Neue'"
+            },
+            tooltips: {
+                enabled: false,
+            },
+            legend: {
+                display: false,
+            },
             spanGaps: true,
+            responsive: true,
             maintainAspectRatio: false,
             scales: {
                 xAxes: [
@@ -43,7 +58,7 @@ function createGraph() {
                         type:"category",
                         position: 'top',
                         ticks:{
-                            callback:function(value, index, values){
+                            callback: function(value, index, values){
                                 if((index % 4)) {
                                     var time = value.split(";")[0];
                                     var day = value.split(";")[1];
@@ -101,14 +116,26 @@ function createGraph() {
             },
             dragData: true,
             dragDataRound: 0, // round to full integers (0 decimals)
-            dragOptions: {
-                showTooltip: true // Recommended. This will show the tooltip while the user
-                // drags the datapoint
-            },
             onDragStart: function (e, element) {
-                console.log(e)
+                console.log(e);
+                console.log(element);
+                $(".popup").css({left: e.pageX + 25});
+                $(".popup").css({top: e.pageY - 25});
+                $(".popup").show();
+                $('#note').val(notesArr[element._index]);
+                $('#exampleModalLabel').text("Note for dato: " + formatLabelforNote(labelsArr[element._index]));
+                $('#show_modal').click(function (){
+                    console.log('show modal button pressed')
+                    $('#exampleModal').modal('show');
+                })
+                $('#save_note').click(function (){
+                    console.log('show modal button pressed')
+                    notesArr[element._index] = $('#note').val();
+                    $('#exampleModal').modal('hide');
+                })
             },
             onDrag: function (e, datasetIndex, index, value) {
+
                 // console.log(datasetIndex, index, value)
                 // change cursor style to grabbing during drag action
                 e.target.style.cursor = 'grabbing'
@@ -118,7 +145,10 @@ function createGraph() {
                 // console.log(datasetIndex, index, value)
                 // restore default cursor style upon drag release
                 e.target.style.cursor = 'default'
-                // where e = event
+                // // where e = event
+                // setTimeout(function (){
+                //     $('#exampleModal').modal('hide');
+                // }, 2000);
             },
             hover: {
                 onHover: function(e) {
@@ -144,16 +174,41 @@ function createGraph() {
                     ratingsArr[valueX] = valueY;
                     this.update();
                 }
+                else if (valueY <= 10 && (ratingsArr[valueX] >= 0 || ratingsArr[valueX] <= 10) && labelsArr[valueX] !== ""){
+
+                }
             }
         }
     };
 
     var ctx = document.getElementById("chartJSContainer").getContext('2d')
     ctx.fillText("Dato", 0, 0);
+
     chart = new Chart(ctx, config);
 }
 
+function formatLabelforNote(label){
+    var TOD = label.split(";")[0];
+    var full_date = label.split(";")[1];
 
+    let time_of_day;
+
+    if(TOD === "M"){
+        time_of_day = "Morgen";
+    } else if (TOD === "D"){
+        time_of_day = "Dag";
+    } else {
+        time_of_day = "Aften";
+    }
+
+    var year = full_date.split("-")[0];
+    var month = full_date.split("-")[1];
+    var day = full_date.split("-")[2];
+
+    var date = day + "-" + month + "-" + year;
+
+    return date + " - " + time_of_day;
+}
 
 
 function postChartData(){
@@ -200,6 +255,19 @@ function getLabels(diaryEntries){
     return labels;
 }
 
+function getNotes(diaryEntries){
+    var notes = [];
+    notes.push("");
+    for(var i = 0; i < diaryEntries.length; i++){
+        notes.push(diaryEntries[i].note1);
+        notes.push(diaryEntries[i].note2);
+        notes.push(diaryEntries[i].note3);
+        notes.push("");
+    }
+    console.log(notes);
+    return notes;
+}
+
 function getDiaries(){
     var result=[];
     $.ajax({
@@ -208,7 +276,7 @@ function getDiaries(){
         type:"GET",
         success:function (data){
             result = data;
-            console.log(data)
+            console.log(data);
         },
         error:function (data){
             console.log("ERROR i svar fra server");
@@ -222,10 +290,13 @@ function parseChartData(){
     var j = 1;
     for(var i = 0; i < diaryToSave.length; i++){
         diaryToSave[i].morning = ratingsArr[j];
+        diaryToSave[i].note1 = notesArr[j];
         j++;
         diaryToSave[i].afternoon = ratingsArr[j];
+        diaryToSave[i].note2 = notesArr[j];
         j++;
         diaryToSave[i].evening = ratingsArr[j];
+        diaryToSave[i].note3 = notesArr[j];
         j+=2;
         diaryToSave[i].sleep = parseInt($("#sleep_day_" + i).val());
     }
@@ -258,6 +329,12 @@ function addSleepInputs(){
         });
     }
 }
+
+// $(window).click(function(e) {
+//     $(".popup").css({left: e.pageX});
+//     $(".popup").css({top: e.pageY});
+//     $(".popup").show();
+// });
 
 window.addEventListener('DOMContentLoaded', function () {
     addSleepInputs()
