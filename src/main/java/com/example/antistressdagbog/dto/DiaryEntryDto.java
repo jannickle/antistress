@@ -29,4 +29,10 @@ public class DiaryEntryDto {
 
     Long account;
 
+    String note1;
+
+    String note2;
+
+    String note3;
+
 }

@@ -54,11 +54,11 @@ header a {
 }
 
 .row {
-    display: flex;
+    /*display: flex;*/
 }
 
 .column1 {
-    width: 50px;
+    width: 4%;
     height: 75vh;
 }
 
@@ -75,7 +75,7 @@ header a {
 }
 
 .column2 {
-    flex: 96%;
+    width: 96%;
     height: 75vh;
 }
 
@@ -107,9 +107,16 @@ header a {
     flex: 50%;
     display: flex;
     justify-content: space-between;
-    padding: 0 5% 0 5%;
+    padding: 0 4.5% 0 4.5%;
 }
 
 .sleepinput {
     display: inline-flex;
+}
+
+.popup {
+    display: none;
+    position: absolute;
+    color: white;
+    border: solid 1px #ddd;
 }

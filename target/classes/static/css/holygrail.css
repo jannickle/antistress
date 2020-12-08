@@ -54,11 +54,11 @@ header a {
 }
 
 .row {
-    display: flex;
+    /*display: flex;*/
 }
 
 .column1 {
-    flex: 4%;
+    width: 4%;
     height: 75vh;
 }
 
@@ -75,7 +75,48 @@ header a {
 }
 
 .column2 {
-    flex: 96%;
+    width: 96%;
     height: 75vh;
 }
 
+/*.filler_box {*/
+/*    float: left;*/
+/*    background: red;*/
+/*    overflow: hidden;*/
+/*    width: 50px*/
+/*}*/
+
+/*.sleepdiv {*/
+/*    float: right;*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    background: dimgrey;*/
+/*}*/
+
+/*.sleepbar */
+
+.sleeprow {
+    display: flex;
+}
+
+.sleepcolumn1 {
+    width: 50px;
+}
+
+.sleepcolumn2 {
+    flex: 50%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4.5% 0 4.5%;
+}
+
+.sleepinput {
+    display: inline-flex;
+}
+
+.popup {
+    display: none;
+    position: absolute;
+    color: white;
+    border: solid 1px #ddd;
+}
