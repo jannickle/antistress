@@ -1,5 +1,6 @@
 package com.example.antistressdagbog.controller;
 
+import com.example.antistressdagbog.utility.FileHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,21 +18,17 @@ public class PDFController {
     public String view(){
         return "guide/view";
     }
-
+    @GetMapping("/navbar")
+    public String viewnav(){
+        return "navbar";
+    }
     @RequestMapping("/howto")
     public void getFile(HttpServletResponse response) throws IOException {
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.readfile("sdan-udfylder-du-antistress-dagbogenthauer-stresscenter.pdf","src/main/resources/static/files/",response);
+//        String fileName = "sdan-udfylder-du-antistress-dagbogenthauer-stresscenter.pdf";
+//        String path = "src/main/resources/static/files/" + fileName;
 
-        String fileName = "sdan-udfylder-du-antistress-dagbogenthauer-stresscenter.pdf";
-        String path = "src/main/resources/static/files/" + fileName;
-
-        File file = new File(path);
-        FileInputStream inputStream = new FileInputStream(file);
-
-        response.setContentType("application/pdf");
-        response.setContentLength((int) file.length());
-        response.setHeader("Content-Disposition", "inline;filename=\"" + fileName + "\"");
-
-        FileCopyUtils.copy(inputStream, response.getOutputStream());
 
     }
 

@@ -41,7 +41,29 @@
         </div>
     </div>
         <form id="diaryForm" action="/user/api/saveDiary" method="post">
-            <button type="submit">Gem Dagbog</button>
+<!--            <div id="sleepBar" style="display: inline-flex; padding: 0 5% 0 5%"></div>-->
+            <div class="sleeprow">
+
+            </div>
+            <div class="sleeprow">
+                <div class="sleepcolumn1"></div>
+                <div class="sleepcolumn2" id="sleepBar">
+                    <div class="sleepinput" id="sleepInput0">Søvn:&nbsp;</div>
+                    <div class="sleepinput" id="sleepInput1">Søvn:&nbsp;</div>
+                    <div class="sleepinput" id="sleepInput2">Søvn:&nbsp;</div>
+                    <div class="sleepinput" id="sleepInput3">Søvn:&nbsp;</div>
+                    <div class="sleepinput" id="sleepInput4">Søvn:&nbsp;</div>
+                    <div class="sleepinput" id="sleepInput5">Søvn:&nbsp;</div>
+                    <div class="sleepinput" id="sleepInput6">Søvn:&nbsp;</div>
+                </div>
+            </div>
+
+
+<!--            <div class="filler_box"></div>-->
+<!--            <div class="sleepdiv" id="sleepBar"></div>-->
+            <div>
+                <button type="submit">Gem Dagbog</button>
+            </div>
         </form>
         <form method="post" action="/user/diary">
             <button type="submit">Fortryd Ændringer</button>
