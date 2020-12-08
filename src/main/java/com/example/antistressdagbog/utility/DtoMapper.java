@@ -19,6 +19,7 @@ public class DtoMapper {
                 .morning(entry.getMorning())
                 .afternoon(entry.getAfternoon())
                 .evening(entry.getEvening())
+                .sleep(entry.getSleep())
                 .account(entry.getAccount().getId())
                 .build();
     }
@@ -31,6 +32,7 @@ public class DtoMapper {
                 .morning(null)
                 .afternoon(null)
                 .evening(null)
+                .sleep(null)
                 .account(account.getId())
                 .build();
     }
@@ -44,6 +46,7 @@ public class DtoMapper {
                 .morning(dto.getMorning())
                 .afternoon(dto.getAfternoon())
                 .evening(dto.getEvening())
+                .sleep(dto.getSleep())
                 .build();
     }
 
