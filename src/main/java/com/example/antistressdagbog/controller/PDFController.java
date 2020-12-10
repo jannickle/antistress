@@ -20,8 +20,16 @@ public class PDFController {
     }
     @GetMapping("/navbar")
     public String viewnav(){
+
         return "navbar";
     }
+
+    @GetMapping("/velkommen")
+    public String velkommen(){
+
+        return "velkommen";
+    }
+
     @RequestMapping("/howto")
     public void getFile(HttpServletResponse response) throws IOException {
         FileHandler fileHandler = new FileHandler();

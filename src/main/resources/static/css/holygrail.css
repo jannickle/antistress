@@ -4,6 +4,7 @@ body {
     grid-template: auto 1fr auto / auto 1fr auto
 }
 
+
 header {
    background: white;
    padding: 0rem;
@@ -86,6 +87,11 @@ header a {
 
 .sleepcolumn1 {
     width: 50px;
+}
+.h4{
+    font-family: Georgia, Serif;
+    font-size: 60px;
+    text-align: center;
 }
 
 .sleepcolumn2 {
