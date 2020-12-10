@@ -119,8 +119,15 @@ function createGraph() {
             onDragStart: function (e, element) {
                 console.log(e);
                 console.log(element);
-                $(".popup").css({left: e.pageX + 25});
-                $(".popup").css({top: e.pageY - 25});
+                console.log(e.type);
+                if(e.type === 'touchstart'){
+                    console.log(e.touches[0])
+                    $(".popup").css({left: element._model.x + (screen.width / 10)});
+                    $(".popup").css({top: element._model.y});
+                } else {
+                    $(".popup").css({left: element._model.x + (screen.width / 30)});
+                    $(".popup").css({top: element._model.y});
+                }
                 $(".popup").show();
                 $('#note').val(notesArr[element._index]);
                 $('#exampleModalLabel').text("Note for dato: " + formatLabelforNote(labelsArr[element._index]));
@@ -329,12 +336,6 @@ function addSleepInputs(){
         });
     }
 }
-
-// $(window).click(function(e) {
-//     $(".popup").css({left: e.pageX});
-//     $(".popup").css({top: e.pageY});
-//     $(".popup").show();
-// });
 
 window.addEventListener('DOMContentLoaded', function () {
     addSleepInputs()

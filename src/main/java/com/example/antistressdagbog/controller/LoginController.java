@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class LoginController {
 
-//    @GetMapping("/perform_logout")
-//    public String performLogout(HttpServletRequest servlet) throws ServletException {
-//        servlet.logout();
-//        return "redirect:/";
-//    }
-
     @GetMapping("/perform_logout")
     public String performLogout(HttpServletRequest servlet) throws ServletException {
         servlet.logout();
-        return "redirect:/login";
+        return "index";
     }
+
+//    @PostMapping("/perform_logout")
+//    public String performLogout() throws ServletException {
+////        servlet.logout();
+//        return "index";
+//    }
 
 }
