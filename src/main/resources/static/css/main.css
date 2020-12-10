@@ -111,3 +111,15 @@ header a {
     color: white;
     border: solid 1px #ddd;
 }
+
+.nav.navbar-nav.navbar-right li a {
+    color: rgb(105,105,105) !important;
+}
+
+.nav.navbar-nav li a{
+    color: rgb(105,105,105) !important;
+}
+
+.navbar-header a {
+    color: rgb(25,25,25) !important;
+}
