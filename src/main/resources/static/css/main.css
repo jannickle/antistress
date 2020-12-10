@@ -1,9 +1,12 @@
-body {
-    display: grid;
-    height: 100vh;
-    grid-template: auto 1fr auto / auto 1fr auto
+html {
+    height: 105vh;
 }
 
+body {
+    display: grid;
+    /*height: 105vh;*/
+    grid-template: auto 1fr auto / auto 1fr auto
+}
 
 header {
    background: white;
@@ -28,10 +31,12 @@ main {
 }
 
 footer {
-    background: white;
+    background: #1e2322;
+    color: #78807d;
+    width: 100%;
     padding: 0rem;
     text-align: center;
-    grid-column: 1 / 4;
+    grid-column: 1/4;
 }
 
 body {
