@@ -1,4 +1,3 @@
-// let ctx;
 let chart;
 
 var diary_entries = getDiaries();
@@ -7,7 +6,6 @@ var ratingsArr = getRatings(diary_entries);
 var notesArr = getNotes(diary_entries);
 
 function createGraph() {
-
     var config = {
         type: 'line',
         data: {
@@ -36,12 +34,12 @@ function createGraph() {
                 }]
         },
         options: {
-            title: {
-                display: true,
-                text: "Din ANTISTRESS Dagbog",
-                fontSize: 18,
-                fontFamily: "'Helvetica Neue'"
-            },
+            // title: {
+            //     display: true,
+            //     text: "Din ANTISTRESS Dagbog",
+            //     fontSize: 18,
+            //     fontFamily: "'Helvetica Neue'"
+            // },
             tooltips: {
                 enabled: false,
             },
@@ -50,7 +48,8 @@ function createGraph() {
             },
             spanGaps: true,
             responsive: true,
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
+            aspectRatio: 1.5,
             scales: {
                 xAxes: [
                     {
@@ -117,11 +116,7 @@ function createGraph() {
             dragData: true,
             dragDataRound: 0, // round to full integers (0 decimals)
             onDragStart: function (e, element) {
-                console.log(e);
-                console.log(element);
-                console.log(e.type);
                 if(e.type === 'touchstart'){
-                    console.log(e.touches[0])
                     $(".popup").css({left: element._model.x + (screen.width / 10)});
                     $(".popup").css({top: element._model.y});
                 } else {
@@ -132,24 +127,20 @@ function createGraph() {
                 $('#note').val(notesArr[element._index]);
                 $('#exampleModalLabel').text("Note for dato: " + formatLabelforNote(labelsArr[element._index]));
                 $('#show_modal').click(function (){
-                    console.log('show modal button pressed')
                     $('#exampleModal').modal('show');
                 })
                 $('#save_note').click(function (){
-                    console.log('show modal button pressed')
                     notesArr[element._index] = $('#note').val();
                     $('#exampleModal').modal('hide');
                 })
             },
             onDrag: function (e, datasetIndex, index, value) {
 
-                // console.log(datasetIndex, index, value)
                 // change cursor style to grabbing during drag action
                 e.target.style.cursor = 'grabbing'
                 // where e = event
             },
             onDragEnd: function (e, datasetIndex, index, value) {
-                // console.log(datasetIndex, index, value)
                 // restore default cursor style upon drag release
                 e.target.style.cursor = 'default'
                 // // where e = event
@@ -180,9 +171,6 @@ function createGraph() {
                 if(valueY <= 10 && ratingsArr[valueX] == null && labelsArr[valueX] !== ""){
                     ratingsArr[valueX] = valueY;
                     this.update();
-                }
-                else if (valueY <= 10 && (ratingsArr[valueX] >= 0 || ratingsArr[valueX] <= 10) && labelsArr[valueX] !== ""){
-
                 }
             }
         }
@@ -228,7 +216,6 @@ function postChartData(){
         data: JSON.stringify(savedDiary),
         success:function (data){
             console.log("SUCCESS svar fra server");
-            console.log(savedDiary);
             $("#status").html("Dagbog er gemt!");
         },
         error:function (data){
@@ -271,7 +258,6 @@ function getNotes(diaryEntries){
         notes.push(diaryEntries[i].note3);
         notes.push("");
     }
-    console.log(notes);
     return notes;
 }
 
@@ -283,7 +269,6 @@ function getDiaries(){
         type:"GET",
         success:function (data){
             result = data;
-            console.log(data);
         },
         error:function (data){
             console.log("ERROR i svar fra server");
@@ -307,7 +292,6 @@ function parseChartData(){
         j+=2;
         diaryToSave[i].sleep = parseInt($("#sleep_day_" + i).val());
     }
-    console.log(diaryToSave);
     return diaryToSave;
 }
 
@@ -329,10 +313,8 @@ function preventSaveFormFromSending(diaryForm){
 function addSleepInputs(){
     for(let i = 0; i < diary_entries.length; i++){
         $(function () {
-            $("<input type='number' min='1' max='10'/>")
-                .attr("value", diary_entries[i].sleep)
-                .attr("id", "sleep_day_" + i)
-                .appendTo("#sleepInput" + i);
+            $('#sleep_day_' + i)
+                .attr("value", diary_entries[i].sleep);
         });
     }
 }
@@ -340,4 +322,30 @@ function addSleepInputs(){
 window.addEventListener('DOMContentLoaded', function () {
     addSleepInputs()
     createGraph();
+    saveImage();
 }, false);
+
+function saveImage(){
+    $('#load').click(function () {
+        var element = document.getElementById('chart_container');
+        var dimensions = element.getBoundingClientRect();
+        console.log(element.getBoundingClientRect())
+        console.log(element.style.marginLeft);
+        console.log(element.style.marginRight);
+
+        var width = dimensions.width - element.style.marginLeft - element.style.marginRight;
+        var height = dimensions.height;
+
+        var opt = {
+            margin:       1,
+            filename:     'myfile.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 1 },
+            jsPDF:        { unit: 'pt', format: [width, height], orientation: 'landscape' }
+        }
+        $('#buttons').hide();
+        html2pdf().set(opt).from(element).save().then(() => {
+            $('#buttons').show();
+        });
+    });
+}
