@@ -9,8 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
     <script th:src="@{/js/chartjs/chartjs-plugin-dragdata.js}"></script>
     <script type="text/javascript" th:src="@{/js/chartFunctions.js}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
-    <script th:src="@{/js/html2canvas.js}"></script>
+    <script type="text/javascript" th:src="@{/js/html2pdf.bundle.js}"></script>
     <link rel="stylesheet" type="text/css" href="/css/Chart.css" >
     <link th:insert="fragments/general.html :: bootstrap4css">
     <link th:insert="fragments/general.html :: fontawesomecss">
@@ -18,66 +17,95 @@
 </head>
 <body>
 <header th:replace="fragments/general.html :: header"></header>
-<div class="left-sidebar"></div>
-<main>
-    <div id="chart_elements">
-        <div class="chart_row" id="capture">
-            <div class="column1">
-                <div class="box2" style="background-color: #fff"></div>
-                <div class="box1" style="background-color: #9e2316"></div>
-                <div class="box1" style="background-color: #ce8817"></div>
-                <div class="box1" style="background-color: #e4d428"></div>
-                <div class="box1" style="background-color: #3e904f"></div>
-                <div class="box3" style="background-color: #fff"></div>
-            </div>
-            <div class="column2">
-                <canvas id="chartJSContainer"></canvas>
-            </div>
-        </div>
-        <form id="diaryForm" action="/user/api/saveDiary" method="post">
-            <div class="sleeprow">
-                <div class="sleepcolumn1"></div>
-                <div class="sleepcolumn2" id="sleepBar">
-                    <div class="sleepinput" id="sleepInput0">Søvn:&nbsp;</div>
-                    <div class="sleepinput" id="sleepInput1">Søvn:&nbsp;</div>
-                    <div class="sleepinput" id="sleepInput2">Søvn:&nbsp;</div>
-                    <div class="sleepinput" id="sleepInput3">Søvn:&nbsp;</div>
-                    <div class="sleepinput" id="sleepInput4">Søvn:&nbsp;</div>
-                    <div class="sleepinput" id="sleepInput5">Søvn:&nbsp;</div>
-                    <div class="sleepinput" id="sleepInput6">Søvn:&nbsp;</div>
+<div class="container my-container" id="chart_container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <h4 style="text-align: center">
+                                Din ANTISTRESS Dagbog
+                            </h4>
+                        </div>
+                        <div id="color-axis" class="col-1" style="padding: 0 0 0 30px;">
+                            <div class="top_fill_box" style="background-color: #fff; height: 4.2%"></div>
+                            <div class="color_box" style="background-color: #9e2316; height: 22.8%"></div>
+                            <div class="color_box" style="background-color: #ce8817; height: 22.8%"></div>
+                            <div class="color_box" style="background-color: #e4d428; height: 22.8%"></div>
+                            <div class="color_box" style="background-color: #3e904f; height: 22.8%"></div>
+                            <div class="bottom_fill_box" style="background-color: #fff; height: 4.2%"></div>
+                        </div>
+                        <div id="chart-canvas" class="col-11" style="padding-left: 0; padding-right: 0">
+                            <canvas id="chartJSContainer"></canvas>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-1"></div>
+                        <div class="col-11" style="padding: 0;">
+                            <form class="sleep-form" id="diaryForm" action="/user/api/saveDiary" method="post">
+                                <div class="form-group" style="display:grid;">
+                                    <small>Søvn:</small>
+                                    <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_0" style="width: 50px">
+                                </div>
+                                <div class="form-group" style="display:grid;">
+                                    <small>Søvn:</small>
+                                    <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_1" style="width: 50px">
+                                </div>
+                                <div class="form-group" style="display:grid;">
+                                    <small>Søvn:</small>
+                                    <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_2" style="width: 50px">
+                                </div>
+                                <div class="form-group" style="display:grid;">
+                                    <small>Søvn:</small>
+                                    <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_3" style="width: 50px">
+                                </div>
+                                <div class="form-group" style="display:grid;">
+                                    <small>Søvn:</small>
+                                    <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_4" style="width: 50px">
+                                </div>
+                                <div class="form-group" style="display:grid;">
+                                    <small>Søvn:</small>
+                                    <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_5" style="width: 50px">
+                                </div>
+                                <div class="form-group" style="display:grid;">
+                                    <small>Søvn:</small>
+                                    <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_6" style="width: 50px">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div>
-                <button type="submit">Gem Dagbog</button>
-            </div>
-        </form>
-        <form method="post" action="/user/diary">
-            <button type="submit">Fortryd Ændringer</button>
-        </form>
-        <button id="load">Download</button>
-        <div class="popup" id="note_popup" style="">
-            <input class="btn btn-dark" type="button" id="show_modal" value="Note" style="opacity: 50">
         </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Note</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="text" id="note" value="">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
-                        <button id="save_note" type="button" class="btn btn-primary">Gem</button>
-                    </div>
-                </div>
+        <div id="buttons" class="col-12" style="display: flex; justify-content: space-between">
+            <button class="btn btn-dark" id="load">Download</button>
+            <form method="post" action="/user/diary">
+                <button class="btn btn-danger" type="submit">Fortryd Ændringer</button>
+            </form>
+            <button class="btn btn-success" type="submit" form="diaryForm">Gem Dagbog</button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Note</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="note" value="">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
+                <button id="save_note" type="button" class="btn btn-primary">Gem</button>
             </div>
         </div>
     </div>
-</main>
-<div class="right-sidebar"></div>
+</div>
+<div class="popup" id="note_popup" style="">
+    <input class="btn btn-dark" type="button" id="show_modal" value="Note" style="opacity: 50">
+</div>
 <footer th:replace="fragments/general.html :: footer"></footer>
 <script type="text/javascript">
     checkjQuery();

@@ -23,7 +23,7 @@ public class DiaryController {
 
     @GetMapping("/user/diary")
     public String chart(Model model){
-        return "user/bootstrapDiary";
+        return "user/diary";
     }
 
     @PostMapping("/user/diary")
