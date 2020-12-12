@@ -3,31 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Velkommen!</title>
-    <link th:insert="fragments/general.html :: bootstrap4css">
-    <link th:insert="fragments/general.html :: fontawesomecss">
-    <link th:insert="fragments/general.html :: maincss">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/css/main.css" >
 </head>
 <body>
-<header th:replace="fragments/general.html :: header"></header>
-<div class="left-sidebar"></div>
-<main style="height: 100vh">
-    <h4 style="text-align: center; padding: 5% 0 2% 0">Velkommen til din ANTISTRESS dagbog</h4>
-    <p style="padding: 0 20% 0 20%">
-        Et af mine vigtigste værktøjer, til dig der gerne vil ud af stress eller undgå det, er ANTISTRESS-dagbogen.
-    </p>
-    <p style="padding: 0 20% 0 20%">
-        ANTISTRESS-dagbogen kan bruges af alle – både alvorligt stressramte og dem, der er på vej ud i stress og gerne vil standse op i tide.
-    </p>
-    <p style="padding: 0 20% 0 20%">
-        Jeg anbefaler, at du fører ANTISTRESS-dagbogen i min. 9 uger for at du kan få tilstrækkelig med viden (data) om dig selv, ift. at lave den livsstilsændring som skal til for, at du kan opretholde en god balance på daglig basis.
-    </p>
-    <p style="padding: 0 20% 0 20%">
-        De 9 uger, hvor du bruger ANTISTRESS-dagbogen, kan være tilstrækkeligt til at få indarbejdet nye vaner, der beskytter dig mod (ny) stress.
-    </p>
-</main>
-<div class="right-sidebar"></div>
-<footer th:replace="fragments/general.html :: footer"></footer>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<div class="d-flex flex-column min-vh-100">
+    <nav th:replace="fragments/general.html :: nav"></nav>
+    <main class="flex-fill">
+        <div class="container">
+            <h4 style="text-align: center; padding: 5% 0 2% 0">Velkommen til din ANTISTRESS dagbog</h4>
+            <p style="padding: 0 20% 0 20%">
+                Et af mine vigtigste værktøjer, til dig der gerne vil ud af stress eller undgå det, er ANTISTRESS-dagbogen.
+            </p>
+            <p style="padding: 0 20% 0 20%">
+                ANTISTRESS-dagbogen kan bruges af alle – både alvorligt stressramte og dem, der er på vej ud i stress og gerne vil standse op i tide.
+            </p>
+            <p style="padding: 0 20% 0 20%">
+                Jeg anbefaler, at du fører ANTISTRESS-dagbogen i min. 9 uger for at du kan få tilstrækkelig med viden (data) om dig selv, ift. at lave den livsstilsændring som skal til for, at du kan opretholde en god balance på daglig basis.
+            </p>
+            <p style="padding: 0 20% 0 20%">
+                De 9 uger, hvor du bruger ANTISTRESS-dagbogen, kan være tilstrækkeligt til at få indarbejdet nye vaner, der beskytter dig mod (ny) stress.
+            </p>
+
+        </div>
+    </main>
+    <footer th:replace="fragments/general.html :: footer"></footer>
+</div>
 </body>
 </html>
