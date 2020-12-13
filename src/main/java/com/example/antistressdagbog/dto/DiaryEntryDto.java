@@ -15,9 +15,9 @@ public class DiaryEntryDto {
 
     String date;
 
-    Integer week;
-
     Integer dayOfWeek;
+
+    Integer week;
 
     Integer morning;
 

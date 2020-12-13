@@ -22,10 +22,11 @@ function getDiaries(){
     let result=[];
     $.ajax({
         async: false,
-        url:"/user/api/getDiaryEntries?week=" + $("#this-week").val(),
+        url:"/user/api/getDiaryEntries/" + $("#this-year").val() + "/" + $("#this-week").val(),
         type:"GET",
         success:function (data){
             result = data;
+            console.log(result);
         },
         error:function (data){
             console.log("ERROR: couldn't get diary loaded");

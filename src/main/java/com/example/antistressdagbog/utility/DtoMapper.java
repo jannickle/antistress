@@ -7,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoField;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
 
 @Component
 public class DtoMapper {
@@ -27,18 +30,20 @@ public class DtoMapper {
                 .build();
     }
 
-    public DiaryEntryDto toDiaryEntryDtoWithDateAndWeek(LocalDate date, Account account){
+    public DiaryEntryDto toEmptyDiaryDto(LocalDate date, Account account, Integer dayOfWeek){
+        WeekFields weekFields = WeekFields.ISO;
         return DiaryEntryDto.builder()
                 .id(null)
                 .date(date.toString())
-                .week(date.get(ChronoField.ALIGNED_WEEK_OF_YEAR))
+                .dayOfWeek(dayOfWeek)
+                .week(date.get(weekFields.weekOfWeekBasedYear()))
                 .morning(null)
                 .afternoon(null)
                 .evening(null)
                 .sleep(null)
-                .note1("")
-                .note2("")
-                .note1("")
+                .note1(null)
+                .note2(null)
+                .note3(null)
                 .account(account.getId())
                 .build();
     }

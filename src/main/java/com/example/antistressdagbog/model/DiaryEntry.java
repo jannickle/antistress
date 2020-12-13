@@ -24,6 +24,7 @@ public class DiaryEntry {
     private Account account;
 
     private LocalDate date;
+    private Integer dayOfWeek;
     private Integer week;
     private Integer morning;
     private Integer afternoon;

@@ -9,26 +9,14 @@ import com.example.antistressdagbog.repository.DiaryEntryRepository;
 import com.example.antistressdagbog.repository.UserRepository;
 import com.example.antistressdagbog.utility.DtoMapper;
 import lombok.AllArgsConstructor;
-import org.apache.tomcat.jni.Local;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoField;
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalField;
-import java.time.temporal.WeekFields;
+import java.time.*;
+import java.time.temporal.*;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 @AllArgsConstructor
 @RestController
@@ -49,15 +37,14 @@ public class DiaryRestController {
         return ResponseEntity.ok(Integer.toString(thisWeek));
     }
 
-    @GetMapping("/user/api/getDiaryEntries")
-    public ResponseEntity<List<DiaryEntryDto>> getDiaryEntries(@RequestParam(name = "week") String week, HttpServletRequest servlet){
-
+    @GetMapping("/user/api/getDiaryEntries/{curr_year}/{week_num}")
+    public ResponseEntity<List<DiaryEntryDto>> getDiaryEntries(HttpServletRequest servlet, @PathVariable String curr_year, @PathVariable String week_num){
+        int year = Integer.parseInt(curr_year);
+        int week = Integer.parseInt(week_num);
         UserCredentials user = userRepository.findById(servlet.getRemoteUser()).get();
         Account account = user.getAccount();
-
-        List<DiaryEntry> diaryEntries = diaryEntryRepository.findAllByAccountAndWeek(account, Integer.parseInt(week));
+        List<DiaryEntry> diaryEntries = diaryEntryRepository.findAllByAccountAndWeek(account, week);
         List<DiaryEntryDto> diaryEntryDtos= new ArrayList<>();
-
         if(diaryEntries.size() != 0){
             for(DiaryEntry entry : diaryEntries){
                 diaryEntryDtos.add(
@@ -68,18 +55,19 @@ public class DiaryRestController {
                 LocalDate nearestDate = diaryEntries.get(diaryEntries.size() - 1).getDate();
                 for(int i = 1; i <= 7 - diaryEntryDtos.size() + 1; i++){
                     diaryEntryDtos.add(
-                            dtoMapper.toDiaryEntryDtoWithDateAndWeek(nearestDate.plusDays(i), account)
+                            dtoMapper.toEmptyDiaryDto(nearestDate.plusDays(i), account, diaryEntryDtos.size() + 1)
                     );
                 }
             }
         } else {
-            Calendar c = Calendar.getInstance();
-            c.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-            LocalDate date = LocalDate.parse(df.format(c.getTime()));
+            String date = year + "-01-10T10:15:30+01:00[Europe/Paris]";
+            ZonedDateTime now = ZonedDateTime.parse(date)
+                    .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, week)
+                    .with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
+            LocalDate date2 = now.toLocalDate();
             for(int i = 0; i < 7; i++){
                 diaryEntryDtos.add(
-                        dtoMapper.toDiaryEntryDtoWithDateAndWeek(date.plusDays(i), account)
+                        dtoMapper.toEmptyDiaryDto(date2.plusDays(i), account, i + 1)
                 );
             }
         }

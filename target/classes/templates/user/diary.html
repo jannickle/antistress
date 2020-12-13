@@ -13,6 +13,7 @@
     <script type="text/javascript" th:src="@{/js/html2pdf.bundle.js}"></script>
 </head>
 <body>
+<input id="this-year" type="hidden" name="this-year" th:value="${thisYear}">
 <input id="this-week" type="hidden" name="this-week" th:value="${thisWeek}">
 <div class="d-flex flex-column min-vh-100">
     <nav th:replace="fragments/general.html :: nav"></nav>
@@ -26,6 +27,8 @@
                                 <div class="col-12">
                                     <h4 style="text-align: center" th:text="'Din ANTISTRESS Dagbog for uge: ' + ${thisWeek}">
                                     </h4>
+                                    <a th:href="@{/user/diary/{curr_year}/{week_num}/next(curr_year = ${thisYear},week_num = ${thisWeek})}">next</a>
+                                    <a th:href="@{/user/diary/{curr_year}/{week_num}/prev(curr_year = ${thisYear},week_num = ${thisWeek})}">prev</a>
                                 </div>
                                 <div id="color-axis" class="col-1" style="padding: 0 0 0 30px;">
                                     <div class="top_fill_box" style="background-color: #fff; height: 4.2%"></div>
