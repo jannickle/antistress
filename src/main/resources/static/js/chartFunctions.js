@@ -146,12 +146,14 @@ function createGraph() {
             dragData: true,
             dragDataRound: 0, // round to full integers (0 decimals)
             onDragStart: function (e, element) {
+                console.log(e);
+                console.log(element);
                 if(e.type === 'touchstart'){
                     $(".popup").css({left: element._model.x + (screen.width / 10)});
                     $(".popup").css({top: element._model.y});
                 } else {
-                    $(".popup").css({left: element._model.x + (screen.width / 30)});
-                    $(".popup").css({top: element._model.y});
+                    $(".popup").css({left: e.pageX + 25});
+                    $(".popup").css({top: e.pageY + 25});
                 }
                 $(".popup").show();
                 $('#note').val(notesArr[element._index]);

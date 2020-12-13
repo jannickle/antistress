@@ -50,6 +50,9 @@
                                 </div>
                                 <div id="chart-canvas" class="col-11" style="padding-left: 0; padding-right: 0">
                                     <canvas id="chartJSContainer"></canvas>
+                                    <div class="popup" id="note_popup" style="">
+                                        <input class="btn btn-dark" type="button" id="show_modal" value="Note" style="opacity: 50">
+                                    </div>
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col-1"></div>
@@ -97,26 +100,23 @@
                     <button class="btn btn-success" type="submit" form="diaryForm">Gem Dagbog</button>
                 </div>
             </div>
-        </div>
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Note</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="text" id="note" value="">
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
-                        <button id="save_note" type="button" class="btn btn-primary">Gem</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Note</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" id="note" value="">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
+                            <button id="save_note" type="button" class="btn btn-primary">Gem</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="popup" id="note_popup" style="">
-            <input class="btn btn-dark" type="button" id="show_modal" value="Note" style="opacity: 50">
         </div>
     </main>
     <footer th:replace="fragments/general.html :: footer"></footer>
