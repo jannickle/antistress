@@ -28,13 +28,13 @@ public class PDFController {
 //        String fileName = "sdan-udfylder-du-antistress-dagbogenthauer-stresscenter.pdf";
 //        String path = "src/main/resources/static/files/" + fileName;
     }
-
-    @RequestMapping("/about")
-    public void getAbout(HttpServletResponse response) throws IOException {
-        FileHandler fileHandler = new FileHandler();
-        fileHandler.readfile("hvad-er-antistress-dagbogenthauer-stresscenter.pdf","src/main/resources/static/files/",response);
-//        String fileName = "sdan-udfylder-du-antistress-dagbogenthauer-stresscenter.pdf";
-//        String path = "src/main/resources/static/files/" + fileName;
-    }
+//
+//    @RequestMapping("/about")
+//    public void getAbout(HttpServletResponse response) throws IOException {
+//        FileHandler fileHandler = new FileHandler();
+//        fileHandler.readfile("hvad-er-antistress-dagbogenthauer-stresscenter.pdf","src/main/resources/static/files/",response);
+////        String fileName = "sdan-udfylder-du-antistress-dagbogenthauer-stresscenter.pdf";
+////        String path = "src/main/resources/static/files/" + fileName;
+//    }
 
 }
