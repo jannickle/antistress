@@ -80,10 +80,10 @@ public class DiaryController {
         return "redirect:/user/diary/" + now.getYear() + "/" + now.get(WeekFields.ISO.weekOfWeekBasedYear());
     }
 
-//    @PostMapping("/user/diary")
-//    public String undoChanges(){
-//        return "redirect:/user/diary";
-//    }
+    @PostMapping("/user/diary")
+    public String undoChanges(){
+        return "redirect:/user/diary";
+    }
 
 
 }

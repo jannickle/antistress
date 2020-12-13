@@ -86,7 +86,7 @@ public class DiaryRestController {
         for(DiaryEntry entry : diaryEntries){
             System.out.println(entry.toString());
         }
-//        diaryEntryRepository.saveAll(diaryEntries);
+        diaryEntryRepository.saveAll(diaryEntries);
     }
 
 }
