@@ -6,14 +6,10 @@ import com.example.antistressdagbog.model.DiaryEntry;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoField;
-import java.time.temporal.TemporalField;
 import java.time.temporal.WeekFields;
-import java.util.Locale;
 
 @Component
 public class DtoMapper {
-
     public DiaryEntryDto toDiaryEntryDto(DiaryEntry entry){
         return DiaryEntryDto.builder()
                 .id(entry.getId())

@@ -24,11 +24,21 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-3 prev">
+                                    <a th:href="@{/user/diary/{curr_year}/{week_num}/prev(curr_year = ${thisYear},week_num = ${thisWeek})}" style="color: #0d0d0d">
+                                        <img src="/img/angle-left-solid.svg" width="10" alt="">
+                                        Forrige
+                                    </a>
+                                </div>
+                                <div class="col-6">
                                     <h4 style="text-align: center" th:text="'Din ANTISTRESS Dagbog for uge: ' + ${thisWeek}">
                                     </h4>
-                                    <a th:href="@{/user/diary/{curr_year}/{week_num}/next(curr_year = ${thisYear},week_num = ${thisWeek})}">next</a>
-                                    <a th:href="@{/user/diary/{curr_year}/{week_num}/prev(curr_year = ${thisYear},week_num = ${thisWeek})}">prev</a>
+                                </div>
+                                <div class="col-3 next">
+                                    <a th:href="@{/user/diary/{curr_year}/{week_num}/next(curr_year = ${thisYear},week_num = ${thisWeek})}" style="color: #0d0d0d">
+                                        Næste
+                                        <img src="/img/angle-right-solid.svg" width="10" alt="">
+                                    </a>
                                 </div>
                                 <div id="color-axis" class="col-1" style="padding: 0 0 0 30px;">
                                     <div class="top_fill_box" style="background-color: #fff; height: 4.2%"></div>

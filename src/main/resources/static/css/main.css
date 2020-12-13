@@ -66,3 +66,11 @@ body {
 .navbar-header a {
     color: rgb(25,25,25) !important;
 }
+
+.prev {
+    text-align: center;
+}
+
+.next {
+    text-align: center;
+}
