@@ -1,9 +1,26 @@
 let chart;
 
+// var thisCurrentWeek = getCurrentWeek();
 var diary_entries = getDiaries();
 var labelsArr = getLabels(diary_entries);
 var ratingsArr = getRatings(diary_entries);
 var notesArr = getNotes(diary_entries);
+
+// function getCurrentWeek(){
+//     var result;
+//     $.ajax({
+//         async: false,
+//         url:"/user/api/getCurrentWeek",
+//         type:"GET",
+//         success:function (data){
+//             result = data;
+//         },
+//         error:function (data){
+//             console.log("ERROR i svar fra server");
+//         }
+//     });
+//     return result;
+// }
 
 function createGraph() {
     var config = {
@@ -265,7 +282,7 @@ function getDiaries(){
     var result=[];
     $.ajax({
         async: false,
-        url:"/user/api/getDiaryEntries",
+        url:"/user/api/getDiaryEntries?week=" + $("#this-week").val(),
         type:"GET",
         success:function (data){
             result = data;
