@@ -1,29 +1,41 @@
-let chart;
+let diary_entries = getDiaries();
+let labelsArr = getLabels(diary_entries);
+let ratingsArr = getRatings(diary_entries);
+let notesArr = getNotes(diary_entries);
 
-// var thisCurrentWeek = getCurrentWeek();
-var diary_entries = getDiaries();
-var labelsArr = getLabels(diary_entries);
-var ratingsArr = getRatings(diary_entries);
-var notesArr = getNotes(diary_entries);
+function checkjQuery(){
+    if(typeof jQuery !== undefined){
+        console.log("jQuery loaded")
+    }else {
+        console.log("jQuery er not loaded")
+    }
+}
 
-// function getCurrentWeek(){
-//     var result;
-//     $.ajax({
-//         async: false,
-//         url:"/user/api/getCurrentWeek",
-//         type:"GET",
-//         success:function (data){
-//             result = data;
-//         },
-//         error:function (data){
-//             console.log("ERROR i svar fra server");
-//         }
-//     });
-//     return result;
-// }
+function preventSaveFormFromSending(diaryForm){
+    diaryForm.submit(function (event){
+        event.preventDefault();
+        postChartData();
+    });
+}
+
+function getDiaries(){
+    let result=[];
+    $.ajax({
+        async: false,
+        url:"/user/api/getDiaryEntries?week=" + $("#this-week").val(),
+        type:"GET",
+        success:function (data){
+            result = data;
+        },
+        error:function (data){
+            console.log("ERROR i svar fra server");
+        }
+    });
+    return result;
+}
 
 function createGraph() {
-    var config = {
+    let config = {
         type: 'line',
         data: {
             labels: labelsArr,
@@ -192,19 +204,14 @@ function createGraph() {
             }
         }
     };
-
-    var ctx = document.getElementById("chartJSContainer").getContext('2d')
-    ctx.fillText("Dato", 0, 0);
-
-    chart = new Chart(ctx, config);
+    let ctx = document.getElementById("chartJSContainer").getContext('2d')
+    let chart = new Chart(ctx, config);
 }
 
 function formatLabelforNote(label){
-    var TOD = label.split(";")[0];
-    var full_date = label.split(";")[1];
-
+    let TOD = label.split(";")[0];
+    let full_date = label.split(";")[1];
     let time_of_day;
-
     if(TOD === "M"){
         time_of_day = "Morgen";
     } else if (TOD === "D"){
@@ -212,39 +219,34 @@ function formatLabelforNote(label){
     } else {
         time_of_day = "Aften";
     }
-
-    var year = full_date.split("-")[0];
-    var month = full_date.split("-")[1];
-    var day = full_date.split("-")[2];
-
-    var date = day + "-" + month + "-" + year;
-
+    let year = full_date.split("-")[0];
+    let month = full_date.split("-")[1];
+    let day = full_date.split("-")[2];
+    let date = day + "-" + month + "-" + year;
     return date + " - " + time_of_day;
 }
 
-
 function postChartData(){
     console.log("createUser er kaldet med " + ratingsArr);
-    var savedDiary = parseChartData();
+    let savedDiary = parseChartData();
     $.ajax({
         url:"/user/api/saveDiary",
         type:"POST",
         contentType:"application/JSON",
         data: JSON.stringify(savedDiary),
         success:function (data){
-            console.log("SUCCESS svar fra server");
-            $("#status").html("Dagbog er gemt!");
+            console.log("SUCCESS: diary saved");
         },
         error:function (data){
-            console.log("ERROR i svar fra server")
+            console.log("ERROR: couldn't save diary")
         }
     });
 }
 
 function getRatings(diaryEntries){
-    var ratings = [];
+    let ratings = [];
     ratings.push(null);
-    for(var i = 0; i < diaryEntries.length; i++){
+    for(let i = 0; i < diaryEntries.length; i++){
         ratings.push(diaryEntries[i].morning);
         ratings.push(diaryEntries[i].afternoon);
         ratings.push(diaryEntries[i].evening);
@@ -255,7 +257,7 @@ function getRatings(diaryEntries){
 }
 
 function getLabels(diaryEntries){
-    var labels = [];
+    let labels = [];
     labels.push("");
     for(var i = 0; i < diaryEntries.length; i++){
         labels.push('M' + ';' + diaryEntries[i].date);
@@ -267,9 +269,9 @@ function getLabels(diaryEntries){
 }
 
 function getNotes(diaryEntries){
-    var notes = [];
+    let notes = [];
     notes.push("");
-    for(var i = 0; i < diaryEntries.length; i++){
+    for(let i = 0; i < diaryEntries.length; i++){
         notes.push(diaryEntries[i].note1);
         notes.push(diaryEntries[i].note2);
         notes.push(diaryEntries[i].note3);
@@ -278,26 +280,10 @@ function getNotes(diaryEntries){
     return notes;
 }
 
-function getDiaries(){
-    var result=[];
-    $.ajax({
-        async: false,
-        url:"/user/api/getDiaryEntries?week=" + $("#this-week").val(),
-        type:"GET",
-        success:function (data){
-            result = data;
-        },
-        error:function (data){
-            console.log("ERROR i svar fra server");
-        }
-    });
-    return result;
-}
-
 function parseChartData(){
-    var diaryToSave = diary_entries;
-    var j = 1;
-    for(var i = 0; i < diaryToSave.length; i++){
+    let diaryToSave = diary_entries;
+    let j = 1;
+    for(let i = 0; i < diaryToSave.length; i++){
         diaryToSave[i].morning = ratingsArr[j];
         diaryToSave[i].note1 = notesArr[j];
         j++;
@@ -312,21 +298,6 @@ function parseChartData(){
     return diaryToSave;
 }
 
-function checkjQuery(){
-    if(typeof jQuery !== undefined){
-        console.log("jQuery er loaded")
-    }else {
-        console.log("jQuery er IKKE loaded")
-    }
-}
-
-function preventSaveFormFromSending(diaryForm){
-    diaryForm.submit(function (event){
-        event.preventDefault();
-        postChartData();
-    });
-}
-
 function addSleepInputs(){
     for(let i = 0; i < diary_entries.length; i++){
         $(function () {
@@ -336,33 +307,25 @@ function addSleepInputs(){
     }
 }
 
-window.addEventListener('DOMContentLoaded', function () {
-    addSleepInputs()
-    createGraph();
-    saveImage();
-}, false);
-
-function saveImage(){
-    $('#load').click(function () {
-        var element = document.getElementById('chart_container');
-        var dimensions = element.getBoundingClientRect();
-        console.log(element.getBoundingClientRect())
-        console.log(element.style.marginLeft);
-        console.log(element.style.marginRight);
-
-        var width = dimensions.width - element.style.marginLeft - element.style.marginRight;
-        var height = dimensions.height;
-
-        var opt = {
-            margin:       1,
-            filename:     'myfile.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 1 },
-            jsPDF:        { unit: 'pt', format: [width, height], orientation: 'landscape' }
-        }
-        $('#buttons').hide();
-        html2pdf().set(opt).from(element).save().then(() => {
-            $('#buttons').show();
-        });
+$('#load').click(function () {
+    let element = document.getElementById('chart_container');
+    let dimensions = element.getBoundingClientRect();
+    let width = dimensions.width;
+    let height = dimensions.height;
+    let opt = {
+        margin:       1,
+        filename:     'myfile.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 1 },
+        jsPDF:        { unit: 'pt', format: [width, height], orientation: 'landscape' }
+    }
+    $('#buttons').hide();
+    html2pdf().set(opt).from(element).save().then(() => {
+        $('#buttons').show();
     });
-}
+});
+
+window.addEventListener('DOMContentLoaded', function () {
+    createGraph();
+    addSleepInputs()
+}, false);
