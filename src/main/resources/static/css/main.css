@@ -74,3 +74,12 @@ body {
 .next {
     text-align: center;
 }
+
+.sleep-form-group {
+    display: grid;
+}
+
+.sleep-input {
+    width: 4vw;
+    min-width: 40px;
+}

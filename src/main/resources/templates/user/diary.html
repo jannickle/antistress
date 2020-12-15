@@ -31,7 +31,7 @@
                                     </a>
                                 </div>
                                 <div class="col-6">
-                                    <h4 style="text-align: center" th:text="'Din ANTISTRESS Dagbog for uge: ' + ${thisWeek}">
+                                    <h4 style="text-align: center" th:text="'Din ANTISTRESS Dagbog for uge: ' + ${thisWeek}  + ' - ' + ${thisYear}">
                                     </h4>
                                 </div>
                                 <div class="col-3 next">
@@ -40,51 +40,56 @@
                                         <img src="/img/angle-right-solid.svg" width="10" alt="">
                                     </a>
                                 </div>
-                                <div id="color-axis" class="col-1" style="padding: 0 0 0 30px;">
-                                    <div class="top_fill_box" style="background-color: #fff; height: 4.2%"></div>
-                                    <div class="color_box" style="background-color: #9e2316; height: 22.8%"></div>
-                                    <div class="color_box" style="background-color: #ce8817; height: 22.8%"></div>
-                                    <div class="color_box" style="background-color: #e4d428; height: 22.8%"></div>
-                                    <div class="color_box" style="background-color: #3e904f; height: 22.8%"></div>
-                                    <div class="bottom_fill_box" style="background-color: #fff; height: 4.2%"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-1 color-axis" style="padding: 2em 0 2em 0">
+                                    <div class="color_box" style="background-color: #9e2316; height: 25%"></div>
+                                    <div class="color_box" style="background-color: #ce8817; height: 25%"></div>
+                                    <div class="color_box" style="background-color: #e4d428; height: 25%"></div>
+                                    <div class="color_box" style="background-color: #3e904f; height: 25%"></div>
                                 </div>
-                                <div id="chart-canvas" class="col-11" style="padding-left: 0; padding-right: 0">
+                                <div class="col-11" id="chart-canvas" style="padding-right: 0; padding-left: 0">
                                     <canvas id="chartJSContainer"></canvas>
-                                    <div class="popup" id="note_popup" style="">
-                                        <input class="btn btn-dark" type="button" id="show_modal" value="Note" style="opacity: 50">
-                                    </div>
                                 </div>
-                                <div class="w-100"></div>
+                            </div>
+                            <div class="row">
                                 <div class="col-1"></div>
                                 <div class="col-11" style="padding: 0;">
                                     <form class="sleep-form" id="diaryForm" action="/user/api/saveDiary" method="post">
-                                        <div class="form-group" style="display:grid;">
+                                        <div class="form-group sleep-form-group">
+                                            <b>Dag 1</b>
                                             <small>Søvn:</small>
-                                            <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_0" style="width: 50px">
+                                            <input type="number" class="form-control-sm sleep-input" min="0" max="10" id="sleep_day_0">
                                         </div>
-                                        <div class="form-group" style="display:grid;">
+                                        <div class="form-group sleep-form-group">
+                                            <b>Dag 2</b>
                                             <small>Søvn:</small>
-                                            <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_1" style="width: 50px">
+                                            <input type="number" class="form-control-sm sleep-input" min="0" max="10" id="sleep_day_1" >
                                         </div>
-                                        <div class="form-group" style="display:grid;">
+                                        <div class="form-group sleep-form-group">
+                                            <b>Dag 3</b>
                                             <small>Søvn:</small>
-                                            <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_2" style="width: 50px">
+                                            <input type="number" class="form-control-sm sleep-input" min="0" max="10" id="sleep_day_2">
                                         </div>
-                                        <div class="form-group" style="display:grid;">
+                                        <div class="form-group sleep-form-group">
+                                            <b>Dag 4</b>
                                             <small>Søvn:</small>
-                                            <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_3" style="width: 50px">
+                                            <input type="number" class="form-control-sm sleep-input" min="0" max="10" id="sleep_day_3">
                                         </div>
-                                        <div class="form-group" style="display:grid;">
+                                        <div class="form-group sleep-form-group">
+                                            <b>Dag 5</b>
                                             <small>Søvn:</small>
-                                            <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_4" style="width: 50px">
+                                            <input type="number" class="form-control-sm sleep-input" min="0" max="10" id="sleep_day_4">
                                         </div>
-                                        <div class="form-group" style="display:grid;">
+                                        <div class="form-group sleep-form-group">
+                                            <b>Dag 6</b>
                                             <small>Søvn:</small>
-                                            <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_5" style="width: 50px">
+                                            <input type="number" class="form-control-sm sleep-input" min="0" max="10" id="sleep_day_5">
                                         </div>
-                                        <div class="form-group" style="display:grid;">
+                                        <div class="form-group sleep-form-group">
+                                            <b>Dag 7</b>
                                             <small>Søvn:</small>
-                                            <input type="number" class="form-control-sm" min="0" max="10" id="sleep_day_6" style="width: 50px">
+                                            <input type="number" class="form-control-sm sleep-input" min="0" max="10" id="sleep_day_6">
                                         </div>
                                     </form>
                                 </div>
@@ -99,6 +104,9 @@
                     </form>
                     <button class="btn btn-success" type="submit" form="diaryForm">Gem Dagbog</button>
                 </div>
+            </div>
+            <div class="popup" id="note_popup" style="">
+                <input class="btn btn-dark" type="button" id="show_modal" value="Note" style="opacity: 50">
             </div>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
