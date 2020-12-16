@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/main.css" >
+    <title>Title</title>
+</head>
+<body>
+<div class="d-flex flex-column min-vh-100">
+    <nav th:replace="fragments/general.html :: nav"></nav>
+    <main class="flex-fill">
+        <div class="container">
+            <form action="assign">
+                <label for="terapeut">Vælg en terapeut:</label>
+                <select id="terapeut"  name="Terapeut">
+                    <option th:each="i : ${terepeuts}" th:value="${id}" th:text="${name}"></option>
+
+                </select>
+
+            </form>
+        </div>
+    </main>
+    <footer th:replace="fragments/general.html :: footer"></footer>
+</div>
+</body>
+</html>
