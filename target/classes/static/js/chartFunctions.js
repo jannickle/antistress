@@ -161,6 +161,9 @@ function createGraph() {
                 $('#show_modal').click(function (){
                     $('#exampleModal').modal('show');
                 })
+                $('#close_note').click(function (){
+                    $('#exampleModal').modal('hide');
+                })
                 $('#save_note').click(function (){
                     notesArr[element._index] = $('#note').val();
                     $('#exampleModal').modal('hide');

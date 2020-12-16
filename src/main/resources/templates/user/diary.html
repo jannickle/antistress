@@ -116,10 +116,13 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <input type="text" id="note" value="">
+                            <div class="form-group">
+                                <label for="note">Indtast note her</label>
+                                <textarea class="form-control" type="text" id="note" style="width: 100%; height: 25vh"></textarea>
+                            </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
+                            <button id="close_note" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Luk</button>
                             <button id="save_note" type="button" class="btn btn-primary">Gem</button>
                         </div>
                     </div>

@@ -83,9 +83,9 @@ public class DiaryRestController {
                     dtoMapper.toDiaryEntry(dto, account)
             );
         }
-        for(DiaryEntry entry : diaryEntries){
-            System.out.println(entry.toString());
-        }
+//        for(DiaryEntry entry : diaryEntries){
+//            System.out.println(entry.toString());
+//        }
         diaryEntryRepository.saveAll(diaryEntries);
     }
 
