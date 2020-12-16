@@ -45,7 +45,6 @@ public class DiaryController {
                     .with(IsoFields.WEEK_OF_WEEK_BASED_YEAR, week + 1)
                     .with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
         } catch (DateTimeException e){
-            System.out.println(e.getMessage());
             year++;
             String date = year + "-01-10T10:15:30+01:00[Europe/Paris]";
             now = ZonedDateTime.parse(date)

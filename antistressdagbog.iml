@@ -40,6 +40,8 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Chart.js" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
+    <orderEntry type="library" name="jspdf" level="application" />
+    <orderEntry type="library" name="jquery-3.5.1.slim" level="application" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-data-jpa:2.4.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.4.0" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.9.6" level="project" />
@@ -139,7 +141,6 @@
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot:2.4.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-autoconfigure:2.4.0" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.projectlombok:lombok:1.18.16" level="project" />
-    <orderEntry type="library" name="jspdf" level="application" />
-    <orderEntry type="library" name="jquery-3.5.1.slim" level="application" />
+    <orderEntry type="library" name="Maven: net.sf.supercsv:super-csv:2.4.0" level="project" />
   </component>
 </module>

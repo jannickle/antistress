@@ -10,4 +10,5 @@ import java.util.List;
 @Transactional
 public interface DiaryEntryRepository extends CrudRepository<DiaryEntry, Long> {
     List<DiaryEntry> findAllByAccountAndWeek(Account account, int week);
+    List<DiaryEntry> findAllByAccount(Account account);
 }
