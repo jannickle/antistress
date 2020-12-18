@@ -9,11 +9,12 @@ import com.example.antistressdagbog.service.DiaryEntryService;
 import com.example.antistressdagbog.utility.DiaryCSVMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.ZoneId;
@@ -31,9 +32,10 @@ public class CsvController {
 
     private final DiaryCSVMapper diaryCSVMapper;
 
-    @GetMapping("/therapist/exportClientDiary")
-    public void exportUserDiaryToCSV(HttpServletResponse response) throws IOException {
+    @GetMapping("/therapist/exportdata/{thisClient}")
+    public void exportUserDiaryToCSV(HttpServletResponse response, @PathVariable String thisClient) throws IOException {
         response.setContentType("text/csv");
+
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Europe/Paris"));
         String currentDateTime = DateTimeFormatter.ofPattern("dd/MM/yyyy - hh:mm").format(now);
 
@@ -41,7 +43,7 @@ public class CsvController {
         String headerValue = "attachment; filename=users_" + currentDateTime + ".csv";
         response.setHeader(headerKey, headerValue);
 
-        UserCredentials user = userRepository.findById("thauer8651").get();
+        UserCredentials user = userRepository.findById(thisClient).get();
         List<DiaryEntry> usersDiary = diaryService.listAllByAccount(user.getAccount());
 
         List<DiaryEntryCSVDto> userDiaryCSV = diaryCSVMapper.toDiaryEntryCSVDtos(user.getUsername(), usersDiary);

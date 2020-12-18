@@ -19,6 +19,6 @@ public class Account {
     Long id;
 
     @Column(name = "therapist")
-    private String therapist;
+    private Long therapist;
 
 }
